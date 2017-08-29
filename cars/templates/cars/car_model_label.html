@@ -1,0 +1,1 @@
+<a href="{% url 'cars:car_detail' slug=build.car.slug %}"><p>{{ build.car.make }} {{ build.car.model }} {% if build.car.trim is not None %}{{ build.car.trim }}{% endif %} {% if build.car.generation is not None %}({{ build.car.generation }}){% endif %}</p></a>

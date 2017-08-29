@@ -1,0 +1,10 @@
+{% extends 'videos/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>{% block title %}{{ car.make }} {{ car.model }} {% if car.trim is not None %}{{ car.trim }}{% endif %} {% if car.generation is not None %}{{ car.generation }}{% endif %}{% endblock %}</h1>
+        {% include "./build_list.html" with build=builds %}
+    </div>
+
+{% endblock %}

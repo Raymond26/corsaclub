@@ -1,0 +1,14 @@
+{% extends 'videos/base.html' %}
+
+{% block title %}{{ tuner.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>{{ tuner.name }}</h1>
+
+        {% include "cars/build_list.html" with builds=tuner.build_set.all %}
+
+    </div>
+
+{% endblock %}

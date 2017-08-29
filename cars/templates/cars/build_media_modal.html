@@ -1,0 +1,74 @@
+<div class="modal" tabindex="-1" role="dialog" id="youtubeModal" aria-labelledby="youtubeModalLabel">
+    <div class="modal-dialog" role="document" style="width: 80%; height: 80%;" id="yt-modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="ytplayer-container">
+                    <div id="ytplayer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="instagramModal" aria-labelledby="igModalLabel">
+    <div class="modal-dialog" role="document" style="width: 80%; height: 80%;" id="ig-modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="ig-media-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Replace the 'ytplayer' element with an <iframe> and
+        // YouTube player after the API code downloads.
+        var player;
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('ytplayer', {
+              height: '300',
+              width: '400'
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    function loadInstagramEmbed(instagramURL) {
+        $("#ig-media-container").html("");
+        $.ajax({
+            url: "/builds/ig_media?url=" + instagramURL,
+            method: 'GET'
+        }).done(function(data) {
+            var html = data.html;
+            $("#ig-media-container").html(html);
+            var width = data.width + "px";
+            $("#ig-modal-dialog").css("width", width);
+            instgrm.Embeds.process();
+        });
+    }
+    function updateYoutubePlayer(videoID) {
+        player.cueVideoById(videoID);
+    }
+    $(document).ready(function() {
+        $("#youtubeModal").on('shown.bs.modal', function() {
+            var height = "" + $("#yt-modal-dialog").height() + "px";
+            console.log(height);
+            $("#ytplayer").css("height", height);
+            $("#ytplayer").css("width", "100%");
+            player.playVideo();
+        });
+        $("#youtubeModal").on('hide.bs.modal', function() {
+            player.pauseVideo();
+            player.cueVideoByUrl('');
+        });
+        $("#instagramModal").on('hide.bs.modal', function() {
+            $("#ig-media-container").html("");
+        });
+    });
+</script>

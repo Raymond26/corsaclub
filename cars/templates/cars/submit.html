@@ -1,0 +1,47 @@
+{% extends 'videos/base.html' %}
+
+{% block title %}Submit your car{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>Submit your Car</h2>
+
+        <p>CL would love to feature your car.  We're into all kinds of cars, especially fast and crazy ones.  Track-only builds, show cars, weekend cruisers, daily drivers, highway assassins are all welcome.</p>
+        <p>Let us know below any social media accounts you own or feature your car so we can check it out.</p>
+        <p>If you'd like to submit photos or videos that aren't currently on any social media channels, feel free to email them to us at: </p>
+        <form action="{% url 'cars:submit' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="makeModelInput">Make & Model</label>
+                <input type="text" name="make-model-input" class="form-control" id="makeModelInput">
+            </div>
+            <div class="form-group">
+                <label for="descriptionInput">Tell us about your car.  The basics.  Stuff like: What do you use it for? What are your goals? Which tuner/cosmetic shops helped you? How big's the turbo(s)? What's your best Laguna Seca laptime?</label>
+                <textarea class="form-control" rows="8" name="description-input" id="descriptionInput"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nameInput">Do you have a name for your car?</label>
+                <input type="text" name="name-input" class="form-control" id="nameInput">
+            </div>
+            <div class="form-group">
+                <label for="igHandleInput">Instagram Handle</label>
+                <input type="text" name="ig-handle-input" class="form-control" id="igHandleInput">
+            </div>
+            <div class="form-group">
+                <label for="twitterHandleInput">Twitter Handle</label>
+                <input type="text" name="twitter-handle-input" class="form-control" id="twitterHandleInput">
+            </div>
+            <div class="form-group">
+                <label for="youtubeChannelInput">Youtube Channel</label>
+                <input type="text" name="youtube-channel-input" class="form-control" id="youtubeChannelInput">
+            </div>
+            <div class="form-group">
+                <label for="buildThreadInput">Build Thread</label>
+                <input type="text" name="build-thread-input" class="form-control" id="buildThreadInput">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+
+{% endblock %}

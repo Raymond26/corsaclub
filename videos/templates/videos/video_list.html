@@ -1,0 +1,37 @@
+<script type="text/javascript">
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+</script>
+<div class="container">
+
+    {% if videos_list %}
+        {% for video in videos_list %}
+            <div class="row">
+                <h3>{{ video.car.make }} {{ video.car.model }} {% if video.car.generation is not None %}{{ video.car.generation }}{% endif %}</h3>
+                {% if video.tuner is not None %}
+                    <h4><a href="/tuners/{{ video.tuner.slug }}">{{ video.tuner }}</a></h4>
+                {% endif %}
+                <div id="ytplayer{{ video.youtube_id }}"></div>
+                <script>
+                  var player{{ video.youtube_id }};
+                </script>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <script type="text/javascript">
+        function onYouTubePlayerAPIReady() {
+            {% for video in videos_list %}
+                player{{ video.youtube_id }} = new YT.Player('ytplayer{{ video.youtube_id }}', {
+                  height: '360',
+                  width: '640',
+                  videoId: '{{ video.youtube_id }}'
+                });
+            {% endfor %}
+        }
+    </script>
+</div>

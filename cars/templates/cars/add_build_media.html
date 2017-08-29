@@ -1,0 +1,26 @@
+{% extends 'videos/base.html' %}
+
+{% block content %}
+
+    <form action="{% url 'cars:add_build_media' slug=build.slug %}" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <h2>Add Media</h2>
+            <h3>{{ build.name }}</h3>
+            <div class="row">
+                {% for media_type in build_media_types %}
+                    <input type="radio" name="media-type-input" value="{{ media_type.name }}"> {{ media_type.name }}<br/>
+                {% endfor %}
+                <br/>
+            </div>
+            <div class="row">
+                <p>External ID: <input type="text" name="external-id-input" style="color: black;"/></p>
+                <br/>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Add</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

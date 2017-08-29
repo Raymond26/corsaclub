@@ -1,0 +1,9 @@
+<div class="container">
+    {% for build in builds %}
+        <div class="row">
+            {% include "cars/build_preview.html" with build=build %}
+        </div>
+    {% endfor %}
+
+    {% include "cars/build_media_modal.html" %}
+</div>

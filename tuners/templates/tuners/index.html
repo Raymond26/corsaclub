@@ -1,0 +1,20 @@
+{% extends 'videos/base.html' %}
+
+{% block title %}Tuners{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Tuners</h1>
+            </div>
+        </div>
+        <div class="row">
+            <ul>
+                {% for tuner in tuners %}
+                    <li><a href="{% url 'tuners:tuner_view' tuner.slug %}">{{ tuner.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

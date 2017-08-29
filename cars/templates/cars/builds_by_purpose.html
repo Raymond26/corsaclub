@@ -1,0 +1,12 @@
+{% extends 'videos/base.html' %}
+
+{% block title %}{{ purpose.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>{{ purpose.name }}</h1>
+        {% include "./build_list.html" with build=builds %}
+    </div>
+
+{% endblock %}

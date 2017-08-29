@@ -1,0 +1,69 @@
+{% extends 'videos/base.html' %}
+
+{% block title %}{{ build.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="color: white;">
+
+        {% if request.user.is_staff %}
+            <a href="{% url 'cars:add_build_media' slug=build.slug %}" style="position: absolute; top: 80px; right: 25px;">Add Media</a>
+        {% endif %}
+            <h1>{{build.name}}</h1>
+            <div class="col-md-4">
+                {% include "./car_model_label.html" with build=build %}
+                <br/>
+                {% for purpose in build.purpose.all %}
+                    {% include "./purpose_label.html" with purpose=purpose %}
+                {% endfor %}
+                <br/>
+                <br/>
+                {% autoescape off %}{{ build.description_as_html }}{% endautoescape %}
+                <div style="width: 100%; margin-top: 50px;"></div>
+                {% if build.ig_handle is not None %}
+                    <p>
+                        <i class="fa fa-instagram" aria-hidden="true"></i><a href="https://instagram.com/{{ build.ig_handle }}"> {{ build.ig_handle }}</a>
+                    </p>
+                {% endif %}
+                {% if build.twitter_handle is not None %}
+                    <p>
+                        <i class="fa fa-twitter" aria-hidden="true"></i><a href="https://twitter.com/{{ build.twitter_handle }}"> {{ build.twitter_handle }}</a>
+                    </p>
+                {% endif %}
+                {% if build.youtube_channel is not None %}
+                    <p>
+                        <i class="fa fa-youtube" aria-hidden="true"></i><a href="https://youtube.com/{{ build.youtube_channel }}"> {{ build.youtube_channel }}</a>
+                    </p>
+                {% endif %}
+                <br/>
+                {% if build.build_thread is not None %}
+                    <p>
+                        Build Thread: <a href="{{ build.build_thread }}">Link</a>
+                    </p>
+                {% endif %}
+                <br/>
+                {% if build.tuners is not None %}
+                    <p>Built & Tuned by:</p>
+                    <ul>
+                        {% for tuner in build.tuners.all %}
+                            <li><a href="{% url 'tuners:tuner_view' slug=tuner.slug %}">{{ tuner.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                </ul>
+            </div>
+            <div class="col-md-8">
+                {% for bm in build_media %}
+                    <div class="col-md-6">
+                        {% include "./build_media.html" with bm=bm %}
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+
+    {% include "./build_media_modal.html" %}
+
+    {% autoescape off %}{% endautoescape %}
+
+{% endblock %}

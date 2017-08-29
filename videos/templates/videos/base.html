@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'cars/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'cars/1-col-portfolio.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'cars/main.css' %}?v=1_5"/>
+
+    <title>{% block title %}{% endblock %}</title>
+    <style type="text/css">
+        @font-face {
+            font-family: "Rubik Regular";
+            src: url({% static 'cars/Rubik-Regular.ttf' %}) format("truetype");
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static 'cars/bootstrap.js' %}"></script>
+    <script src="https://use.fontawesome.com/c8915c74a3.js"></script>
+    <script async="" defer="defer" src="http://platform.instagram.com/en_US/embeds.js"></script>
+</head>
+<body>
+
+    {% include "videos/nav.html" %}
+
+    <div id="wrap">
+        <div id="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <!--<a href="{% url 'cars:about' %}">About</a>-->
+                <!--<a href="{% url 'cars:contact' %}">Contact</a>-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
