@@ -54,3 +54,11 @@ body {
     overflow: auto;
     padding-bottom: 180px;
 }
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #99ccff;
+}

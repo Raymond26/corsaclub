@@ -9,7 +9,7 @@
         {% if request.user.is_staff %}
             <a href="{% url 'cars:add_build_media' slug=build.slug %}" style="position: absolute; top: 80px; right: 25px;">Add Media</a>
         {% endif %}
-            <h1>{{build.name}}</h1>
+            <h1 style="margin-bottom: 35px;">{{build.name}}</h1>
             <div class="col-md-4">
                 {% include "./car_model_label.html" with build=build %}
                 <br/>

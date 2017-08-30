@@ -7,7 +7,7 @@
     {% endfor %}
     <br/>
     <br/>
-    {% autoescape off %}{{ build.description_as_html|truncatewords_html:20 }}{% endautoescape %}
+    {% autoescape off %}{{ build.description_as_html|truncatewords_html:35 }}{% endautoescape %}
 </div>
 <div class="col-xs-12 col-sm-6 col-md-8" style="margin-top: 50px;">
     {% for bm in build.build_media_preview %}
