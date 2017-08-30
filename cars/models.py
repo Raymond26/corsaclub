@@ -40,7 +40,7 @@ class Build(models.Model):
     description = models.TextField(null=True, blank=True)
     car = models.ForeignKey(Car)
     slug = AutoSlugField('slug', max_length=100, unique=True, populate_from=('name'), blank=False, null=False)
-    tuners = models.ManyToManyField(Tuner)
+    tuners = models.ManyToManyField(Tuner, blank=True)
     purpose = models.ManyToManyField(CarPurpose)
     ig_handle = models.CharField(max_length=100, null=True, blank=True)
     twitter_handle = models.CharField(max_length=100, null=True, blank=True)
