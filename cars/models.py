@@ -74,7 +74,7 @@ class BuildMedia(models.Model):
     preview_image_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return "%s : %s" % (self.media_type, self.remote_url)
+        return "%s : %s : %s" % (self.builds.first().name, self.media_type, self.remote_url)
 
 class FeaturedBuild(models.Model):
     build = models.OneToOneField(Build)
