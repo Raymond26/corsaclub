@@ -62,3 +62,22 @@ a {
 a:hover {
     color: #99ccff;
 }
+
+.build-media-preview-container {
+    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .mobile-full {
+        width: 100%;
+    }
+
+    .build-bullet-points-container {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .build-media-preview-container {
+        margin-top: 25px;
+    }
+}

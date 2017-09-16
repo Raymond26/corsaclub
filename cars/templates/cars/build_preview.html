@@ -1,19 +1,18 @@
-<div class="col-xs-6 col-sm-4">
+<div class="col-xs-6 col-sm-4 mobile-full">
     <a href="{% url 'cars:build_view' slug=build.slug %}"><h3>{{ build.name }}</h3></a>
     {% include "cars/car_model_label.html" with build=build %}
-    <br/>
     {% for purpose in build.purpose.all %}
         {% include "./purpose_label.html" with purpose=purpose %}
     {% endfor %}
     <br/>
     <br/>
-    <ul>
+    <ul class="build-bullet-points-container">
     {% for bullet_point in build.bullet_points_ordered %}
         <li>{{ bullet_point.bullet_point }}</li>
     {% endfor %}
     </ul>
 </div>
-<div class="col-xs-12 col-sm-6 col-md-8" style="margin-top: 50px;">
+<div class="col-xs-12 col-sm-6 col-md-8 build-media-preview-container">
     {% for bm in build.build_media_preview %}
         <div class="col-md-4">
             {% include "cars/build_media.html" with bm=bm %}
