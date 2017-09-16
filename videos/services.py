@@ -4,13 +4,13 @@ from cars.models import BuildMedia
 
 youtube_api_key = os.environ["YOUTUBE_API_KEY"]
 
-def instagram_embed_retrieve(instagram_media_id):
+def instagram_embed_retrieve(instagram_media_id, media_type):
     ig_url = "https://instagram.com/p/" + instagram_media_id
     api_response = requests.get("https://api.instagram.com/oembed?url=" + ig_url)
     json = api_response.json()
 
     return BuildMedia(
-        media_type=BuildMedia.BuildMediaType.INSTAGRAM_PHOTO.value,
+        media_type=media_type.value,
         remote_url=ig_url,
         external_id=instagram_media_id,
         preview_image_url=json["thumbnail_url"]

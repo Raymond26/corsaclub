@@ -81,7 +81,7 @@ def add_build_media(request, slug):
             build_media.builds=[build]
             build_media.save()
         elif media_type == BuildMedia.BuildMediaType.INSTAGRAM_PHOTO or media_type == BuildMedia.BuildMediaType.INSTAGRAM_VIDEO:
-            build_media = instagram_embed_retrieve(external_id)
+            build_media = instagram_embed_retrieve(external_id, media_type)
             build_media.save()
             build_media.builds=[build]
             build_media.save()
