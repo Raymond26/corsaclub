@@ -100,7 +100,7 @@ def get_instagram_media(request):
 
 def featured_builds(request):
     template = loader.get_template('cars/featured_builds.html')
-    featured = FeaturedBuild.objects.all()
+    featured = FeaturedBuild.objects.order_by('order')
     builds = []
     for fb in featured:
         builds.append(fb.build)

@@ -26,7 +26,7 @@ SECRET_KEY = '+p*^94$jw7=xp@7&y0rbt@a)t2njgbnbfchugq1b8kigv9chts'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["guarded-waters-10417.herokuapp.com", "localhost", "corsazone.com", "www.corsazone.com"]
+ALLOWED_HOSTS = ["guarded-waters-10417.herokuapp.com", "localhost", "corsazone.com", "www.corsazone.com", "corsaclub.com", "www.corsaclub.com"]
 
 
 # Application definition
