@@ -19,6 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^tuners/', include('tuners.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^profiles/', include('profiles.urls')),
     #cars.urls should always be last
     url(r'^', include('cars.urls')),
 ]
