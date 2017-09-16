@@ -18,7 +18,12 @@
                 {% endfor %}
                 <br/>
                 <br/>
-                {% autoescape off %}{{ build.description_as_html }}{% endautoescape %}
+                <ul>
+                {% for bullet_point in build.carbulletpoint_set.all %}
+                    <li>{{ bullet_point.bullet_point }}</li>
+                {% endfor %}
+                </ul>
+                {% autoescape off %}{{ build.description_as_html|truncatewords_html:25 }}{% endautoescape %}
                 <div style="width: 100%; margin-top: 50px;"></div>
                 {% if build.ig_handle is not None %}
                     <p>
