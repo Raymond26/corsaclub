@@ -95,7 +95,7 @@ class CarSubmission(models.Model):
             str = self.name
         return str + " %s" % self.make_and_model
 
-class CarBulletPoint(models.Model):
+class BuildBulletPoint(models.Model):
     build = models.ForeignKey(Build)
     bullet_point = models.CharField(max_length=200, null=False, blank=False)
     order = models.SmallIntegerField(null=False, blank=False, default=0)
