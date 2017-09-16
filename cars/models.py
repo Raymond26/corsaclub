@@ -56,6 +56,9 @@ class Build(models.Model):
     def description_as_html(self):
         return markdown2.markdown(self.description)
 
+    def bullet_points_ordered(self):
+        return self.buildbulletpoint_set.order_by('order')
+
 class BuildMedia(models.Model):
     @unique
     @django_enum
