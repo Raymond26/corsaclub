@@ -1,7 +1,7 @@
-{% if bm.media_type == build_media_types.YOUTUBE_VIDEO.value %}
+{% if bm.media_type == build_media_types.YOUTUBE_VIDEO.value or bm.media_type == build_media_types.INSTAGRAM_VIDEO.value %}
     <i class="fa fa-play fa-2x media-overlay-icon" aria-hidden="true"></i>
     <a type="button" href="#" data-toggle="modal" data-target="#youtubeModal" onclick='updateYoutubePlayer("{{ bm.external_id }}");'><img class="media-preview" src="{{ bm.preview_image_url }}"/></a>
-{% elif bm.media_type == build_media_types.INSTAGRAM_PHOTO.value or bm.media_type == build_media_types.INSTAGRAM_VIDEO.value %}
+{% elif bm.media_type == build_media_types.INSTAGRAM_PHOTO.value %}
     <i class="fa fa-instagram fa-2x media-overlay-icon ig-media-icon" aria-hidden="true"></i>
     <a type="button" href="#" onclick='loadInstagramEmbed("{{ bm.remote_url }}")' data-toggle="modal" data-target="#instagramModal"><img class="media-preview" src="{{ bm.preview_image_url }}"/></a>
 {% endif %}
