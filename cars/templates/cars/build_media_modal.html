@@ -1,7 +1,29 @@
+<script type="text/javascript">
+        function cleanupYT() {
+            player.pauseVideo();
+            player.cueVideoByUrl('');
+        }
+
+        function closeYT() {
+            $("#youtubeModal").modal('hide');
+            cleanupYT();
+        }
+
+        function cleanupIG() {
+            $("#ig-media-container").html("");
+        }
+
+        function closeIG() {
+            $("#instagramModal").modal('hide');
+            cleanupIG();
+        }
+</script>
+
 <div class="modal" tabindex="-1" role="dialog" id="youtubeModal" aria-labelledby="youtubeModalLabel">
-    <div class="modal-dialog" role="document" style="width: 80%; height: 80%;" id="yt-modal-dialog">
+    <div class="modal-dialog" role="document" id="yt-modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
+                <div><button class="fa fa-times fa-2x close-media-button" aria-hidden="true" onclick="closeYT();"></button></div>
                 <div id="ytplayer-container">
                     <div id="ytplayer"></div>
                 </div>
@@ -11,9 +33,10 @@
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="instagramModal" aria-labelledby="igModalLabel">
-    <div class="modal-dialog" role="document" style="width: 80%; height: 80%;" id="ig-modal-dialog">
+    <div class="modal-dialog" role="document" id="ig-modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
+                <div><button class="fa fa-times fa-2x close-media-button" aria-hidden="true" onclick="closeIG();"></button></div>
                 <div id="ig-media-container"></div>
             </div>
         </div>
@@ -64,11 +87,10 @@
             player.playVideo();
         });
         $("#youtubeModal").on('hide.bs.modal', function() {
-            player.pauseVideo();
-            player.cueVideoByUrl('');
+            cleanupYT();
         });
         $("#instagramModal").on('hide.bs.modal', function() {
-            $("#ig-media-container").html("");
+            cleanupIG();
         });
     });
 </script>

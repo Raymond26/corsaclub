@@ -67,17 +67,42 @@ a:hover {
     margin-top: 50px;
 }
 
+.modal-dialog {
+    width: 80%;
+    height: 80%;
+}
+
+.close-media-button {
+    color: black;
+    margin-bottom: 15px;
+    background: none;
+    border: none;
+    outline: none;
+}
+
 @media (max-width: 768px) {
     .mobile-full {
-        width: 100%;
+        width: 90%;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     .build-bullet-points-container {
-        margin-left: 50px;
-        margin-right: 50px;
+        margin-left: 13px;
+        margin-right: 13px;
     }
 
     .build-media-preview-container {
         margin-top: 25px;
+    }
+
+    .modal-dialog {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+
+    .modal-content {
+        border-radius: 0px;
     }
 }
