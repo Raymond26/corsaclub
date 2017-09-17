@@ -22,7 +22,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="youtubeModal" aria-labelledby="youtubeModalLabel">
     <div class="modal-dialog" role="document" id="yt-modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body media-modal-body">
                 <div><button class="fa fa-times fa-2x close-media-button" aria-hidden="true" onclick="closeYT();"></button></div>
                 <div id="ytplayer-container">
                     <div id="ytplayer"></div>
@@ -35,7 +35,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="instagramModal" aria-labelledby="igModalLabel">
     <div class="modal-dialog" role="document" id="ig-modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body media-modal-body">
                 <div><button class="fa fa-times fa-2x close-media-button" aria-hidden="true" onclick="closeIG();"></button></div>
                 <div id="ig-media-container"></div>
             </div>
@@ -84,11 +84,21 @@
             console.log(height);
             $("#ytplayer").css("height", height);
             $("#ytplayer").css("width", "100%");
+
+            // bootstrap.js is causing padding-right to be 15px on mobile for some reason.  has something to do with body overflow but i'm too lazy to figure it out
+            $("#youtubeModal").css("padding-right","0px");
+
             player.playVideo();
         });
         $("#youtubeModal").on('hide.bs.modal', function() {
             cleanupYT();
         });
+
+        // bootstrap.js is causing padding-right to be 15px on mobile for some reason.  has something to do with body overflow but i'm too lazy to figure it out
+        $("#instagramModal").on('shown.bs.modal', function() {
+            $("#instagramModal").css("padding-right", "0px");
+        });
+
         $("#instagramModal").on('hide.bs.modal', function() {
             cleanupIG();
         });
