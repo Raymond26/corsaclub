@@ -54,7 +54,7 @@
                     </p>
                 {% endif %}
                 <br/>
-                {% if build.tuners is not None %}
+                {% if build.tuners.all %}
                     <p>Built & Tuned by:</p>
                     <ul>
                         {% for tuner in build.tuners.all %}
