@@ -108,6 +108,12 @@ a:hover {
 
 @media (max-width: 768px) {
 
+    .build-preview-row {
+        padding-top: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
     #footer {
         padding-left: 35px;
         padding-right: 35px;
