@@ -46,6 +46,7 @@ class Build(models.Model):
     twitter_handle = models.CharField(max_length=100, null=True, blank=True)
     youtube_channel = models.CharField(max_length=100, null=True, blank=True)
     build_thread = models.URLField(null=True, blank=True)
+    has_been_sold = models.NullBooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return self.name
