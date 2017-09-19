@@ -90,13 +90,41 @@ a:hover {
     padding-bottom: 15px;
 }
 
-.build-bullet-points-container {
+.build-bullet-points-container, .build-description-container {
     margin-left: 13px;
     margin-right: 13px;
     color: #96a2b4;
 }
 
+.build-content-container {
+    color: white;
+    background-color: #2f323e;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+    padding-top: 5px;
+    margin-top: 10px;
+}
+
 @media (max-width: 768px) {
+
+    #footer {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .build-media-list-container {
+        margin-top: 35px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .build-content {
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 
     .mobile-full {
         width: 90%;

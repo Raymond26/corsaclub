@@ -4,17 +4,18 @@
 
 {% block content %}
 
-    <div class="container" style="color: white;">
-
+    <div class="container build-content-container">
         {% if request.user.is_staff %}
-            <a href="{% url 'cars:add_build_media' slug=build.slug %}" style="position: absolute; top: 80px; right: 25px;">Add Media</a>
+            <a href="{% url 'cars:add_build_media' slug=build.slug %}" style="position: absolute; top: 80px; right: 25px; padding-right: 30px; padding-top: 15px;">Add Media</a>
         {% endif %}
-            <h1 style="margin-bottom: 35px;">{{build.name}}</h1>
-            {% if build.has_been_sold is True %}
-                <p><i>This car has been sold</i></p>
-                <br/>
-            {% endif %}
-            <div class="col-md-4">
+            <h1 style="margin-bottom: 20px;">{{build.name}}</h1>
+            <div style="width: 100%; height: 1px; background-color: #96a2b4;"></div>
+            <div style="width: 100%; height: 35px;"></div>
+            <div class="col-md-4 build-content">
+                {% if build.has_been_sold is True %}
+                    <p><i>This car has been sold</i></p>
+                    <br/>
+                {% endif %}
                 {% include "./car_model_label.html" with build=build %}
                 <br/>
                 {% for purpose in build.purpose.all %}
@@ -22,12 +23,14 @@
                 {% endfor %}
                 <br/>
                 <br/>
-                <ul>
+                <ul class="build-bullet-points-container">
                 {% for bullet_point in build.bullet_points_ordered %}
                     <li>{{ bullet_point.bullet_point }}</li>
                 {% endfor %}
                 </ul>
-                {% autoescape off %}{{ build.description_as_html }}{% endautoescape %}
+                <div class="build-description-container">
+                    {% autoescape off %}{{ build.description_as_html }}{% endautoescape %}
+                </div>
                 <div style="width: 100%; margin-top: 50px;"></div>
                 {% if build.ig_handle is not None %}
                     <p>
@@ -62,7 +65,7 @@
 
                 </ul>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 build-media-list-container">
                 {% for bm in build_media %}
                     <div class="col-md-6">
                         {% include "./build_media.html" with bm=bm %}
