@@ -7,6 +7,7 @@ from enum import Enum, unique
 from django_extensions.db.fields import AutoSlugField
 from tuners.models import Tuner
 import markdown2
+from itertools import chain
 
 class Car(models.Model):
     make = models.CharField(max_length=100)
@@ -52,7 +53,13 @@ class Build(models.Model):
         return self.name
 
     def build_media_preview(self):
-        return self.buildmedia_set.all()[:3]
+        featured_media = self.buildmedia_set.filter(featured=True).order_by('featured_order')[:3]
+        featured_ct = len(featured_media)
+        if featured_ct < 3:
+            amt_to_get = 3 - featured_ct
+            more = self.buildmedia_set.order_by('add_timestamp')[:amt_to_get]
+            featured_media = chain(featured_media, more)
+        return featured_media
 
     def description_as_html(self):
         return markdown2.markdown(self.description)
@@ -73,6 +80,9 @@ class BuildMedia(models.Model):
     remote_url = models.URLField(null=True, blank=True)
     external_id = models.CharField(max_length=200, null=True, blank=True)
     preview_image_url = models.URLField(null=True, blank=True)
+    add_timestamp = models.DateTimeField(auto_now_add=True)
+    featured = models.BooleanField(default=False)
+    featured_order = models.SmallIntegerField(null=True, blank=True)
 
     def __str__(self):
         return "%s : %s : %s" % (self.builds.first().name, self.media_type, self.remote_url)
