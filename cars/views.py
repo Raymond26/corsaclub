@@ -86,11 +86,11 @@ def add_build_media(request, slug):
             build_media.builds=[build]
             build_media.save()
         else:
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/' + slug)
 
 
 
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/' + slug)
 
 def get_instagram_media(request):
     ig_url = request.GET["url"]
