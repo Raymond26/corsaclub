@@ -16,5 +16,6 @@ urlpatterns = [
   url(r'^category/(?P<slug>[\w-]+)/$', views.cars_by_purpose, name='cars_by_purpose'),
   url(r'^cars/(?P<slug>[\w-]+)/$', views.car_view, name='car_detail'),
   url(r'^(?P<slug>[\w-]+)/$', views.build_view, name='build_view'),
+  url(r'^(?P<slug>[\w-]+)/feedback/$', views.send_build_feedback, name='send_build_feedback'),
   url(r'^(?P<slug>[\w-]+)/add_media/$', views.add_build_media, name='add_build_media'),
 ]

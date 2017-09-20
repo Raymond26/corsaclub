@@ -7,7 +7,7 @@ from django.template import loader
 from django.views import generic
 from django.contrib.admin.views.decorators import staff_member_required
 
-from .models import Build, Car, BuildMedia, FeaturedBuild, CarSubmission, CarPurpose
+from .models import Build, Car, BuildMedia, FeaturedBuild, CarSubmission, CarPurpose, BuildFeedback
 from tuners.models import Tuner
 from videos.models import Video
 from videos.services import instagram_embed_retrieve, youtube_embed_retrieve
@@ -54,6 +54,16 @@ def build_view(request, slug):
         'build_media_types' : BuildMedia.BuildMediaType
     }
     return HttpResponse(template.render(context, request))
+
+def send_build_feedback(request, slug):
+    build = Build.objects.filter(slug=slug)[0]
+    build_feedback = BuildFeedback(
+        build = build,
+        raw_feedback = request.POST["feedback"],
+        email = request.POST["email"]
+    )
+    build_feedback.save()
+    return HttpResponse("")
 
 @staff_member_required
 def add_build_media(request, slug):

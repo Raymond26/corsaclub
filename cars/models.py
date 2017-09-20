@@ -109,6 +109,7 @@ class CarSubmission(models.Model):
             str = self.name
         return str + " %s" % self.make_and_model
 
+
 class BuildBulletPoint(models.Model):
     build = models.ForeignKey(Build)
     bullet_point = models.CharField(max_length=200, null=False, blank=False)
@@ -116,3 +117,27 @@ class BuildBulletPoint(models.Model):
 
     def __str__(self):
         return "%s : %s" % (self.build.name, self.bullet_point)
+
+
+class BuildMediaRequest(models.Model):
+
+    build = models.ForeignKey(Build)
+    media_type = models.CharField(max_length=2, choices=[(choice.value, choice.name) for choice in BuildMedia.BuildMediaType])
+    remote_url = models.URLField(null=False, blank=False)
+    external_id = models.CharField(max_length=200, null=False, blank=False)
+    request_timestamp = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField()
+
+    def __str__(self):
+        return "%s : %s : %s" % (self.build.name, self.media_type, self.remote_url)
+
+
+class BuildFeedback(models.Model):
+
+    build = models.ForeignKey(Build)
+    raw_feedback = models.TextField(null=False, blank=False)
+    email = models.EmailField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s : %s" % (self.build.name, self.email)
