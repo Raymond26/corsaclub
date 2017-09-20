@@ -24,6 +24,9 @@
         <div class="modal-content">
             <div class="modal-body media-modal-body">
                 <div><button class="fa fa-times fa-2x close-media-button" aria-hidden="true" onclick="closeYT();"></button></div>
+                {% if request.user.is_staff %}
+                    <p id="youtube-video-id" style="color: black;"></p>
+                {% endif %}
                 <div id="ytplayer-container">
                     <div id="ytplayer"></div>
                 </div>
@@ -37,6 +40,9 @@
         <div class="modal-content">
             <div class="modal-body media-modal-body">
                 <div><button class="fa fa-times fa-2x close-media-button" aria-hidden="true" onclick="closeIG();"></button></div>
+                {% if request.user.is_staff %}
+                    <p id="instagram-remote-url" style="color: black;"></p>
+                {% endif %}
                 <div id="ig-media-container"></div>
             </div>
         </div>
@@ -74,9 +80,15 @@
             $("#ig-modal-dialog").css("width", width);
             instgrm.Embeds.process();
         });
+        {% if request.user.is_staff %}
+            $("#instagram-remote-url").html(instagramURL);
+        {% endif %}
     }
     function updateYoutubePlayer(videoID) {
         player.cueVideoById(videoID);
+        {% if request.user.is_staff %}
+            $("#youtube-video-id").html(videoID);
+        {% endif %}
     }
     $(document).ready(function() {
         $("#youtubeModal").on('shown.bs.modal', function() {
