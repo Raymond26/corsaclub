@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'tuners.apps.TunersConfig',
     'cars.apps.CarsConfig',
     'videos.apps.VideosConfig',
-    'profiles.apps.ProfilesConfig'
+    'profiles.apps.ProfilesConfig',
+    'subscriptions.apps.SubscriptionsConfig'
 ]
 
 MIDDLEWARE = [

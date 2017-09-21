@@ -1,0 +1,21 @@
+{% extends 'videos/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Stay Updated!</h1>
+        <hr>
+        <p>If you'd like to receive the latest cars and updates to your email inbox, you can let us know here.  We'll also keep you informed of new features and developments to Corsa Club.</p>
+        <p>We'll send an update about once a month.  No ads or spam.  We promise.</p>
+
+        <form action="{% url 'subscriptions:subscription_signup' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="subscriptionInputEmail"></label>
+                <input type="email" name="email-input" class="form-control" id="subscriptionInputEmail" placeholder="Email">
+            </div>
+            <button type="submit" aria-label="Submit" class="btn btn-default">Sign me up!</button>
+        </form>
+    </div>
+
+{% endblock %}
